@@ -1,0 +1,29 @@
+body{
+    font-family:Arial,sans-serif;
+    max-width:600px;
+    margin:30px auto;
+}
+
+input{
+    width:250px;
+    padding:10px;
+}
+
+button{
+    padding:10px;
+    cursor:pointer;
+    margin-left:5px;
+}
+
+select{
+    padding:8px;
+}
+
+li{
+    margin:10px 0;
+}
+
+.completed{
+    text-decoration:line-through;
+    color:gray;
+}
