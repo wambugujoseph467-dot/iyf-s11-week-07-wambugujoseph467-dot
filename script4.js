@@ -2,221 +2,186 @@
 
 const state = {
     todos: [],
-    filter: "all",
-    theme: "light"
+    filter: 'all',
+    theme: 'light',
 };
 
 // ---------- LOAD ----------
 
-function loadState(){
+function loadState() {
+    const saved = localStorage.getItem('appState');
 
-    const saved = localStorage.getItem("appState");
-
-    if(saved){
+    if (saved) {
         Object.assign(state, JSON.parse(saved));
     }
-
 }
 
 loadState();
 
 // ---------- SAVE ----------
 
-function saveState(){
-
-    localStorage.setItem(
-        "appState",
-        JSON.stringify(state)
-    );
-
+function saveState() {
+    localStorage.setItem('appState', JSON.stringify(state));
 }
 
 // ---------- SET STATE ----------
 
-function setState(updates){
-
+function setState(updates) {
     Object.assign(state, updates);
 
     saveState();
 
     render();
-
 }
 
 // ---------- ELEMENTS ----------
 
-const input = document.getElementById("todoInput");
-const addBtn = document.getElementById("addBtn");
-const filter = document.getElementById("filter");
-const list = document.getElementById("todoList");
+const input = document.getElementById('todoInput');
+const addBtn = document.getElementById('addBtn');
+const filter = document.getElementById('filter');
+const list = document.getElementById('todoList');
 
 // ---------- ADD ----------
 
-function addTodo(text){
-
+function addTodo(text) {
     const newTodo = {
         id: Date.now(),
         text: text,
-        completed: false
+        completed: false,
     };
 
     setState({
-        todos: [...state.todos, newTodo]
+        todos: [...state.todos, newTodo],
     });
-
 }
 
 // ---------- TOGGLE ----------
 
-function toggleTodo(id){
-
+function toggleTodo(id) {
     setState({
-
-        todos: state.todos.map(todo =>
-
-            todo.id === id
-                ? { ...todo, completed: !todo.completed }
-                : todo
-
-        )
-
+        todos: state.todos.map((todo) =>
+            todo.id === id ? { ...todo, completed: !todo.completed } : todo
+        ),
     });
-
 }
 
 // ---------- DELETE ----------
 
-function deleteTodo(id){
-
+function deleteTodo(id) {
     setState({
-
-        todos: state.todos.filter(
-            todo => todo.id !== id
-        )
-
+        todos: state.todos.filter((todo) => todo.id !== id),
     });
-
 }
 
 // ---------- FILTER ----------
 
-function setFilter(value){
-
+function setFilter(value) {
     setState({
-        filter: value
+        filter: value,
     });
-
 }
 
 // ---------- RENDER ----------
 
-function render(){
-
-    list.innerHTML = "";
+function render() {
+    list.innerHTML = '';
 
     let todos = state.todos;
 
-    if(state.filter === "completed"){
-        todos = todos.filter(todo => todo.completed);
+    if (state.filter === 'completed') {
+        todos = todos.filter((todo) => todo.completed);
     }
 
-    if(state.filter === "pending"){
-        todos = todos.filter(todo => !todo.completed);
+    if (state.filter === 'pending') {
+        todos = todos.filter((todo) => !todo.completed);
     }
 
     filter.value = state.filter;
 
-    todos.forEach(todo=>{
+    todos.forEach((todo) => {
+        const li = document.createElement('li');
 
-        const li = document.createElement("li");
-
-        if(todo.completed){
-            li.classList.add("completed");
+        if (todo.completed) {
+            li.classList.add('completed');
         }
 
-        li.innerHTML = `
-            ${todo.text}
-            <button onclick="toggleTodo(${todo.id})">Done</button>
-            <button onclick="deleteTodo(${todo.id})">Delete</button>
-        `;
+        li.textContent = `${todo.text} `;
+
+        const doneBtn = document.createElement('button');
+        doneBtn.textContent = 'Done';
+        doneBtn.addEventListener('click', () => {
+            toggleTodo(todo.id);
+        });
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'Delete';
+        deleteBtn.addEventListener('click', () => {
+            deleteTodo(todo.id);
+        });
+
+        li.appendChild(doneBtn);
+        li.appendChild(deleteBtn);
 
         list.appendChild(li);
-
     });
-
 }
 
 // ---------- EVENTS ----------
 
-addBtn.addEventListener("click",function(){
-
+addBtn.addEventListener('click', function () {
     const text = input.value.trim();
 
-    if(text===""){
+    if (text === '') {
         return;
     }
 
     addTodo(text);
 
-    input.value="";
-
+    input.value = '';
 });
 
-filter.addEventListener("change",function(){
-
+filter.addEventListener('change', function () {
     setFilter(filter.value);
-
 });
 
 // ---------- OBSERVER PATTERN ----------
 
-const createStore = (initialState)=>{
-
+const createStore = (initialState) => {
     let state = initialState;
 
     const listeners = [];
 
-    return{
+    return {
+        getState: () => state,
 
-        getState:()=>state,
+        setState: (updates) => {
+            state = { ...state, ...updates };
 
-        setState:(updates)=>{
-
-            state = {...state,...updates};
-
-            listeners.forEach(listener=>listener(state));
-
+            listeners.forEach((listener) => listener(state));
         },
 
-        subscribe:(listener)=>{
-
+        subscribe: (listener) => {
             listeners.push(listener);
 
-            return ()=>{
-
+            return () => {
                 const index = listeners.indexOf(listener);
 
-                listeners.splice(index,1);
-
+                listeners.splice(index, 1);
             };
-
-        }
-
+        },
     };
-
 };
 
-// Demo
-const store = createStore({count:0});
+// ---------- DEMO ----------
 
-const unsubscribe = store.subscribe(state=>{
+const store = createStore({ count: 0 });
 
-    console.log("State changed:",state);
-
+const unsubscribe = store.subscribe((state) => {
+    console.log('State changed:', state);
 });
 
-store.setState({count:1});
-store.setState({count:2});
+store.setState({ count: 1 });
+store.setState({ count: 2 });
 
 unsubscribe();
 

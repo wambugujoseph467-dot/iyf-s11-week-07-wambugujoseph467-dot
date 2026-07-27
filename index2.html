@@ -1,38 +1,32 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Persistent To-Do List</title>
-    <link rel="stylesheet" href="style2.css">
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Persistent To-Do List</title>
+        <link rel="stylesheet" href="style2.css" />
+    </head>
+    <body>
+        <h1>Persistent To-Do List</h1>
 
-    <h1>Persistent To-Do List</h1>
+        <input type="text" id="todoInput" placeholder="Enter a new task" />
 
-    <input
-        type="text"
-        id="todoInput"
-        placeholder="Enter a new task"
-    >
+        <button id="addBtn">Add Task</button>
 
-    <button id="addBtn">Add Task</button>
+        <br /><br />
 
-    <br><br>
+        <label>Filter:</label>
 
-    <label>Filter:</label>
+        <select id="filter">
+            <option value="all">All</option>
+            <option value="completed">Completed</option>
+            <option value="pending">Pending</option>
+        </select>
 
-    <select id="filter">
-        <option value="all">All</option>
-        <option value="completed">Completed</option>
-        <option value="pending">Pending</option>
-    </select>
+        <hr />
 
-    <hr>
+        <ul id="todoList"></ul>
 
-    <ul id="todoList"></ul>
-
-    <script src="script2.js"></script>
-
-</body>
+        <script src="script2.js"></script>
+    </body>
 </html>

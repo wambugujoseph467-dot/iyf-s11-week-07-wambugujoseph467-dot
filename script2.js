@@ -1,10 +1,10 @@
-const STORAGE_KEY = "todos";
-const FILTER_KEY = "filter";
+const STORAGE_KEY = 'todos';
+const FILTER_KEY = 'filter';
 
-const input = document.getElementById("todoInput");
-const addBtn = document.getElementById("addBtn");
-const todoList = document.getElementById("todoList");
-const filter = document.getElementById("filter");
+const input = document.getElementById('todoInput');
+const addBtn = document.getElementById('addBtn');
+const todoList = document.getElementById('todoList');
+const filter = document.getElementById('filter');
 
 // ---------- Storage Helpers ----------
 
@@ -35,14 +35,13 @@ function saveTodos(todos) {
 // ---------- Add Todo ----------
 
 function addTodo(text) {
-
     const todos = loadTodos();
 
     const newTodo = {
         id: Date.now(),
         text: text,
         completed: false,
-        createdAt: new Date().toISOString()
+        createdAt: new Date().toISOString(),
     };
 
     todos.push(newTodo);
@@ -55,10 +54,9 @@ function addTodo(text) {
 // ---------- Toggle Todo ----------
 
 function toggleTodo(id) {
-
     const todos = loadTodos();
 
-    const todo = todos.find(t => t.id === id);
+    const todo = todos.find((t) => t.id === id);
 
     if (todo) {
         todo.completed = !todo.completed;
@@ -72,10 +70,9 @@ function toggleTodo(id) {
 // ---------- Delete Todo ----------
 
 function deleteTodo(id) {
-
     let todos = loadTodos();
 
-    todos = todos.filter(todo => todo.id !== id);
+    todos = todos.filter((todo) => todo.id !== id);
 
     saveTodos(todos);
 
@@ -85,10 +82,9 @@ function deleteTodo(id) {
 // ---------- Render ----------
 
 function renderTodos() {
-
     const todos = loadTodos();
 
-    todoList.innerHTML = "";
+    todoList.innerHTML = '';
 
     const currentFilter = filter.value;
 
@@ -96,36 +92,35 @@ function renderTodos() {
 
     let filteredTodos = todos;
 
-    if (currentFilter === "completed") {
-        filteredTodos = todos.filter(todo => todo.completed);
+    if (currentFilter === 'completed') {
+        filteredTodos = todos.filter((todo) => todo.completed);
     }
 
-    if (currentFilter === "pending") {
-        filteredTodos = todos.filter(todo => !todo.completed);
+    if (currentFilter === 'pending') {
+        filteredTodos = todos.filter((todo) => !todo.completed);
     }
 
-    filteredTodos.forEach(todo => {
-
-        const li = document.createElement("li");
+    filteredTodos.forEach((todo) => {
+        const li = document.createElement('li');
 
         if (todo.completed) {
-            li.classList.add("completed");
+            li.classList.add('completed');
         }
 
-        const text = document.createElement("span");
+        const text = document.createElement('span');
         text.textContent = todo.text;
 
-        const completeBtn = document.createElement("button");
-        completeBtn.textContent = "Done";
+        const completeBtn = document.createElement('button');
+        completeBtn.textContent = 'Done';
 
-        completeBtn.addEventListener("click", function () {
+        completeBtn.addEventListener('click', function () {
             toggleTodo(todo.id);
         });
 
-        const deleteBtn = document.createElement("button");
-        deleteBtn.textContent = "Delete";
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'Delete';
 
-        deleteBtn.addEventListener("click", function () {
+        deleteBtn.addEventListener('click', function () {
             deleteTodo(todo.id);
         });
 
@@ -134,44 +129,36 @@ function renderTodos() {
         li.appendChild(deleteBtn);
 
         todoList.appendChild(li);
-
     });
-
 }
 
 // ---------- Add Button ----------
 
-addBtn.addEventListener("click", function () {
-
+addBtn.addEventListener('click', function () {
     const text = input.value.trim();
 
-    if (text === "") {
-        alert("Please enter a task.");
+    if (text === '') {
+        alert('Please enter a task.');
         return;
     }
 
     addTodo(text);
 
-    input.value = "";
-
+    input.value = '';
 });
 
 // ---------- Filter ----------
 
-filter.addEventListener("change", function () {
-
+filter.addEventListener('change', function () {
     renderTodos();
-
 });
 
 // ---------- Start ----------
 
-document.addEventListener("DOMContentLoaded", function () {
-
-    const savedFilter = getFromStorage(FILTER_KEY, "all");
+document.addEventListener('DOMContentLoaded', function () {
+    const savedFilter = getFromStorage(FILTER_KEY, 'all');
 
     filter.value = savedFilter;
 
     renderTodos();
-
 });

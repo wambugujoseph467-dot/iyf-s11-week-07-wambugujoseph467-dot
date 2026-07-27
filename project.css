@@ -1,24 +1,24 @@
-body{
-    font-family:Arial,sans-serif;
-    max-width:800px;
-    margin:30px auto;
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 30px auto;
 }
 
 .product,
-.cart-item{
-    border:1px solid #ccc;
-    padding:10px;
-    margin:10px 0;
+.cart-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
 }
 
-button{
-    margin:5px;
-    padding:8px 12px;
-    cursor:pointer;
+button {
+    margin: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
 }
 
-img{
-    width:120px;
-    display:block;
-    margin-bottom:10px;
+img {
+    width: 120px;
+    display: block;
+    margin-bottom: 10px;
 }

@@ -1,0 +1,29 @@
+{
+    "name": "iyf-s11-week-07-wambugujoseph467-dot",
+    "version": "1.0.0",
+    "description": "",
+    "main": "project.js",
+    "scripts": {
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix",
+        "format": "prettier --write ."
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/wambugujoseph467-dot/iyf-s11-week-07-wambugujoseph467-dot.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "type": "commonjs",
+    "bugs": {
+        "url": "https://github.com/wambugujoseph467-dot/iyf-s11-week-07-wambugujoseph467-dot/issues"
+    },
+    "homepage": "https://github.com/wambugujoseph467-dot/iyf-s11-week-07-wambugujoseph467-dot#readme",
+    "devDependencies": {
+        "@eslint/js": "^10.0.1",
+        "eslint": "^10.8.0",
+        "globals": "^17.8.0",
+        "prettier": "^3.9.6"
+    }
+}

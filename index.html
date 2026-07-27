@@ -1,26 +1,28 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notes App</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Notes App</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <h1>My Notes</h1>
 
-    <h1>My Notes</h1>
+        <textarea
+            id="noteInput"
+            placeholder="Write your note here..."
+        ></textarea>
 
-    <textarea id="noteInput" placeholder="Write your note here..."></textarea>
+        <br /><br />
 
-    <br><br>
+        <button id="saveBtn">Save Note</button>
+        <button id="clearBtn">Clear Notes</button>
 
-    <button id="saveBtn">Save Note</button>
-    <button id="clearBtn">Clear Notes</button>
+        <h2>Saved Notes</h2>
 
-    <h2>Saved Notes</h2>
+        <ul id="notesList"></ul>
 
-    <ul id="notesList"></ul>
-
-    <script src="script.js"></script>
-</body>
+        <script src="script.js"></script>
+    </body>
 </html>

@@ -1,36 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>State Management</title>
-    <link rel="stylesheet" href="style4.css">
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>State Management</title>
+        <link rel="stylesheet" href="style4.css" />
+    </head>
+    <body>
+        <h1>State Management To-Do</h1>
 
-    <h1>State Management To-Do</h1>
+        <input type="text" id="todoInput" placeholder="Enter a task" />
 
-    <input
-        type="text"
-        id="todoInput"
-        placeholder="Enter a task"
-    >
+        <button id="addBtn">Add</button>
 
-    <button id="addBtn">Add</button>
+        <br /><br />
 
-    <br><br>
+        <select id="filter">
+            <option value="all">All</option>
+            <option value="completed">Completed</option>
+            <option value="pending">Pending</option>
+        </select>
 
-    <select id="filter">
-        <option value="all">All</option>
-        <option value="completed">Completed</option>
-        <option value="pending">Pending</option>
-    </select>
+        <hr />
 
-    <hr>
+        <ul id="todoList"></ul>
 
-    <ul id="todoList"></ul>
-
-    <script src="script4.js"></script>
-
-</body>
+        <script src="script4.js"></script>
+    </body>
 </html>
