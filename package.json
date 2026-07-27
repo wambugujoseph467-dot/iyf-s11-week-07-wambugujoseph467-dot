@@ -6,14 +6,15 @@
     "scripts": {
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
-        "format": "prettier --write ."
+        "format": "prettier --write .",
+        "test": "vitest"
     },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/wambugujoseph467-dot/iyf-s11-week-07-wambugujoseph467-dot.git"
     },
     "keywords": [],
-    "author": "",
+    "author": "Joseph Wambugu",
     "license": "ISC",
     "type": "commonjs",
     "bugs": {
@@ -24,6 +25,7 @@
         "@eslint/js": "^10.0.1",
         "eslint": "^10.8.0",
         "globals": "^17.8.0",
-        "prettier": "^3.9.6"
+        "prettier": "^3.9.6",
+        "vitest": "^4.1.10"
     }
 }
